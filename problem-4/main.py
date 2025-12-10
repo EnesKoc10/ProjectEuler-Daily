@@ -1,16 +1,16 @@
-x, y = 999, 999
-palindrome = []
+palindrom = 0
 
+for x in range(999, 99, -1):
+    for y in range(x, 99, -1):
+        carpim = x * y
+        
+        carpim_str = str(carpim)
+        if carpim_str == carpim_str[::-1]:
+            
+            
+            if carpim > palindrom:
+                palindrom = carpim
+              
 
-while True:
-    palindrome = [i for i in str(x * y)]
-    r_palindrome = palindrome[::-1]
-    if palindrome == r_palindrome:
-        break
-    else:
-        y -= 1
-        if y < 100: 
-            y = x
-            x -= 1
-
-print(palindrome)
+print(palindrom)
+# 906609
