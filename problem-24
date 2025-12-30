@@ -1,0 +1,17 @@
+import math
+
+def find_nth_permutation(digits, n):
+    n -= 1
+    result = []
+    digits = list(digits)
+    
+    for i in range(len(digits) - 1, -1, -1):
+        idx, n = divmod(n, math.factorial(i))
+        result.append(str(digits.pop(idx)))
+        
+    return "".join(result)
+
+digits = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+target = 1000000
+
+print(find_nth_permutation(digits, target))
