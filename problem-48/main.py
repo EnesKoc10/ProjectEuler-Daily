@@ -8,6 +8,7 @@ def solve():
     result = total_sum % mod
     print(result)
 
+
 if __name__ == "__main__":
     solve()
     # 9110846700
