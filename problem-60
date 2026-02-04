@@ -1,0 +1,39 @@
+import math
+
+def is_prime(n):
+    if n < 2: return False
+    if n < 4: return True
+    if n % 2 == 0 or n % 3 == 0: return False
+    for i in range(5, int(math.sqrt(n)) + 1, 6):
+        if n % i == 0 or n % (i + 2) == 0:
+            return False
+    return True
+
+def are_compatible(p1, p2):
+    s1 = str(p1)
+    s2 = str(p2)
+    return is_prime(int(s1 + s2)) and is_prime(int(s2 + s1))
+
+def solve():
+    limit = 10000 
+    primes = []
+    for i in range(3, limit):
+        if is_prime(i):
+            primes.append(i)
+    
+    pairs = [set() for _ in range(len(primes))]
+    
+    for i in range(len(primes)):
+        for j in range(i + 1, len(primes)):
+            if are_compatible(primes[i], primes[j]):
+                pairs[i].add(j)
+                
+    for i in range(len(primes)):
+        for j in pairs[i]:
+            for k in pairs[i].intersection(pairs[j]):
+                for l in pairs[i].intersection(pairs[j], pairs[k]):
+                    for m in pairs[i].intersection(pairs[j], pairs[k], pairs[l]):
+                        return primes[i] + primes[j] + primes[k] + primes[l] + primes[m]
+
+result = solve()
+print(f"The lowest sum is: {result}")
